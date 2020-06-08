@@ -1,2 +1,12 @@
 @import "./base/settings";
 @import "./base/base";
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header h1 {
+    background: cornflowerblue;
+}

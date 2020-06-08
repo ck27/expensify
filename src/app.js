@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Link, NavLink} from "react-router-dom";
 import ReactModal from "react-modal";
 
 import "normalize.css/normalize.css";
@@ -30,12 +30,40 @@ const Help = () => (
     </div>
 );
 
+const NotFound = () => (
+    <div>
+        <h1>Looks like you took a wrong turn :(</h1>
+        <Link to="/">Click to go HOME</Link>
+    </div>
+);
+
+
+const Header = () => (
+    <header>
+        <div>
+            <h1>expensify</h1>
+        </div>
+        <div className="links">
+            <NavLink exact={true} to="/" activeClassName="is-active">DASHBOARD</NavLink>
+            <NavLink to="/add" activeClassName="is-active">ADD EXPENSE</NavLink>
+            <NavLink to="/edit" activeClassName="is-active">EDIT EXPENSE</NavLink>
+            <NavLink to="/help" activeClassName="is-active">HELP</NavLink>
+        </div>
+    </header>
+
+);
 const routes = (
     <BrowserRouter>
-        <Route exact={true} path="/" component={ExpenseDashboard} />
-        <Route path="/add" component={AddExpense} />
-        <Route path="/edit" component={EditExpense} />
-        <Route path="/help" component={Help} />
+        <div>
+            <Header />
+            <Switch>
+                <Route exact={true} path="/" component={ExpenseDashboard} />
+                <Route path="/add" component={AddExpense} />
+                <Route path="/edit" component={EditExpense} />
+                <Route path="/help" component={Help} />
+                <Route component={NotFound}/>
+            </Switch>
+        </div>
     </BrowserRouter>
 );
 
