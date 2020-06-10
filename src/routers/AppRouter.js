@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Switch, Link, NavLink} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import ExpenseDashboard from "../components/ExpenseDashboard";
 import AddExpense from "../components/AddExpense";
@@ -10,14 +10,6 @@ import NotFound from "../components/NotFound";
 
 
 
-
-
-
-
-
-
-
-
 const AppRouter = () => (
     <BrowserRouter>
         <div>
@@ -25,7 +17,7 @@ const AppRouter = () => (
             <Switch>
                 <Route exact={true} path="/" component={ExpenseDashboard} />
                 <Route path="/add" component={AddExpense} />
-                <Route path="/edit" component={EditExpense} />
+                <Route path="/edit/:id" component={EditExpense} />
                 <Route path="/help" component={Help} />
                 <Route component={NotFound}/>
             </Switch>

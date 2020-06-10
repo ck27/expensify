@@ -1,9 +1,12 @@
 import React from "react";
 
-const EditExpense = () => (
-    <div>
-        <h1>Edit Expense</h1>
-    </div>
-);
+const EditExpense = (props) => {
+    console.log(props);
+    return (
+        <div>
+            <h1>Edit Expense : {props.match.params.id}</h1>
+        </div>
+    );
+}
 
 export default EditExpense;
