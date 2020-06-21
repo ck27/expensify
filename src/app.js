@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
 
 import "normalize.css/normalize.css";
 import "./styles/app.scss";
@@ -23,6 +24,10 @@ store.dispatch( setTextFilter("ec"));
 const state = store.getState();
 console.log(getVisibleExpenses(state.expenses,state.filter));
 
+const appJsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+);
 
-
-ReactDOM.render(<AppRouter />, document.getElementById("app"));
+ReactDOM.render(appJsx, document.getElementById("app"));
