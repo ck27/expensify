@@ -4,16 +4,20 @@ import { connect } from "react-redux";
 const ExpenseList = (props) => (
     <div>
         <h2>Expenses : {props.name}</h2>
-        {props.expenses.length}
+        {props.expenses.map( (item) => (
+            <p>{item.description}</p>
+        ))}
     </div>
 );
 
-const ConnectedExpenseList = connect( (state) => {
+const mapStateToProps = (state) => {
     return {
         name: "Chethan",
-        expenses : state.expenses
+        expenses : state.expenses,
+        filters: state.filters
     }
 
-})(ExpenseList);
+};
 
-export default ConnectedExpenseList;
+export default connect(mapStateToProps )(ExpenseList);
+
