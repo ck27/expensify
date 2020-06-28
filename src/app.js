@@ -15,10 +15,10 @@ import getExpenses from "./selectors/expenses";
 const store = configureStore();
 
 store.dispatch( addExpense({ amount: 470, description: "9538404979 postpaid bill", createdAt:"20200615"}) );
-store.dispatch( addExpense({ amount: 470, description: "9538404979 postpaid bill", createdAt:"20200615"}) );
-store.dispatch( addExpense({ amount: 353, description: "water bill", createdAt:"20200604"}) );
-store.dispatch( addExpense({ amount: 353, description: "home EC bill", createdAt:"20200604"}) );
-store.dispatch( addExpense({ amount: 353, description: "pump EC bill", createdAt:"20200604"}) );
+store.dispatch( addExpense({ amount: 352, description: "9538968000 postpaid bill", createdAt:"20200615"}) );
+store.dispatch( addExpense({ amount: 2240, description : "water bill", createdAt:"20200604"}) );
+store.dispatch( addExpense({ amount: 2289, description: "Pump EC bill", createdAt:"20200618"}) );
+store.dispatch( addExpense({ amount: 1586, description: "Home EC bill", createdAt:"20200618"}) );
 store.dispatch( setTextFilter("ec"));
 
 const state = store.getState();
