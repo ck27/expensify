@@ -9,14 +9,18 @@ console.log(now.format("YYYY Do MM"));
 
 export default class ExpenseForm extends React.Component {
 
-    state = {
-        description: "",
-        note: "",
-        amount: "",
-        createdAt: moment(),
-        calendarFocused: false,
-        isValid: true
-    };
+    constructor(props) {
+        super(props); 
+        this.state = {
+            description: props.expense ? props.expense.description : "",
+            note: props.expense ? props.expense.note : "",
+            amount: props.expense ? props.expense.amount : "",
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calendarFocused: false,
+            isValid: true
+        };
+    }
+
 
     onDescChange = (e) => {
         const description = e.target.value;
@@ -49,7 +53,8 @@ export default class ExpenseForm extends React.Component {
         }));
     }
 
-    addExpense = (e) => {
+    onSubmit = (e) => {
+        console.log('Expense Form submitted')
         e.preventDefault();
         if(!this.state.description || !this.state.amount) {
             this.setState(() => ({isValid :false}))
@@ -69,7 +74,7 @@ export default class ExpenseForm extends React.Component {
         return (
             <div>
                 {!this.state.isValid && <p>Please enter valid input for desription amount</p>}
-                <form onSubmit={this.addExpense}>
+                <form onSubmit={this.onSubmit}>
                     <input type="text" placeholder="Description" value={this.state.description} onChange={this.onDescChange} />
                     <br/>
                     <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChange}/>
