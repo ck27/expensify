@@ -10,7 +10,6 @@ test('should return deleteExpense object', () => {
     });
 });
 
-
 test('should return editExpense object', () => {
     const updates = { note : "new notes"};
     const id = "1234";
