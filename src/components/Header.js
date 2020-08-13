@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const Header = () => (
     <header>
         <div>
-            <h1>expensify</h1>
+            <h1>Expensify</h1>
         </div>
         <div className="links">
             <NavLink exact={true} to="/" activeClassName="is-active">DASHBOARD</NavLink>

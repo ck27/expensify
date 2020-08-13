@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it should render NotFound 1`] = `
+<div>
+  <h1>
+    Looks like you took a wrong turn :(
+  </h1>
+  <Link
+    to="/"
+  >
+    Click to go HOME
+  </Link>
+</div>
+`;
