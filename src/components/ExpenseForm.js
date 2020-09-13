@@ -62,7 +62,7 @@ export default class ExpenseForm extends React.Component {
             console.log("submitted dispatch");
             this.props.onSubmit({
                 description: this.state.description,
-                amount : parseFloat(this.state.amount,10) * 100,
+                amount : parseFloat(this.state.amount,10),
                 createdAt: this.state.createdAt.valueOf(),
                 note: this.state.note
             })

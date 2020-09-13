@@ -2,6 +2,7 @@ import React from "react";
 import {shallow} from "enzyme";
 import ExpenseForm from "../../components/ExpenseForm";
 import expenses from "../../tests/fixtures/expenses";
+import moment from "moment";
 
 test("it must render expense form", () =>{
     const content = shallow(<ExpenseForm />);
@@ -60,4 +61,57 @@ test("should not set state.amount on invalid input", () => {
     });
     expect(content.state("amount")).toBe("");
     expect(content).toMatchSnapshot();
+});
+
+test("should call onSubmit with valid props provided as input", () => {
+    const onSubmitSpy = jest.fn();
+
+    const content = shallow(<ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy}/>);
+
+    content.find("form").simulate("submit", { preventDefault: () => {} });
+    
+    expect(onSubmitSpy).toHaveBeenCalledWith({
+        description : expenses[0].description,
+        amount: expenses[0].amount,
+        createdAt: expenses[0].createdAt,
+        note: expenses[0].note
+    });
+    expect(content.state("isValid")).toBe(true);
+});
+
+test("should call onSubmit and set error state for invalid input", () => {
+    const onSubmitSpy = jest.fn();
+
+    const anExpense = expenses[0];
+    anExpense.description = "";
+
+    const content = shallow(<ExpenseForm expense={anExpense} onSubmit={onSubmitSpy}/>);
+
+    content.find("form").simulate("submit", { preventDefault: () => {} });
+
+    expect(onSubmitSpy).not.toHaveBeenCalledWith({
+        description : anExpense.description,
+        amount: anExpense.amount,
+        createdAt: anExpense.createdAt,
+        note: anExpense.note
+    });
+    expect(content.state("isValid")).toBe(false);
+})
+
+
+test("should set new date on data change", () => {
+    const now = moment();
+    const content = shallow(<ExpenseForm />);
+
+    content.find('withStyles(SingleDatePicker)').prop("onDateChange")(now);
+    expect(content.state("createdAt")).toBe(now);
+})
+
+
+test("should set calendar focussed onchange", () => {
+    const now = moment();
+    const content = shallow(<ExpenseForm />);
+
+    content.find('withStyles(SingleDatePicker)').prop("onFocusChange")({ focused : true});
+    expect(content.state("calendarFocused")).toBe(true);
 })
